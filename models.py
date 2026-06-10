@@ -7,13 +7,13 @@ class Event(Base):
     __tablename__ = "events"
 
     # Primary Key
-    event_id = Column(Integer, "event_id", primary_key=True, autoincrement=True, index=True)
+    event_id = Column(Integer, name="event_id", primary_key=True, autoincrement=True, index=True)
 
     # Other Columns
-    event_name = Column(String, "event_name", nullable=False, unique=True, index=True)
-    total_seats = Column(Integer, "total_seats", nullable=False)
-    available_seats = Column(Integer, "available_seats", nullable=False)
-    event_date = Column(DateTime, "event_date", nullable=False)
+    event_name = Column(String, name="event_name", nullable=False, unique=True, index=True)
+    total_seats = Column(Integer, name="total_seats", nullable=False)
+    available_seats = Column(Integer, name="available_seats", nullable=False)
+    event_date = Column(DateTime, name="event_date", nullable=False)
 
     registrations = relationship("Registration", back_populates="event")
 
@@ -21,12 +21,12 @@ class Registration(Base):
     __tablename__ = "registrations"
 
     # Primary Key
-    reg_id = Column(Integer, "reg_id", primary_key=True, autoincrement=True, index=True)
+    reg_id = Column(Integer, name="reg_id", primary_key=True, autoincrement=True, index=True)
 
     # Other Columns
     event_id = Column(Integer, ForeignKey("events.event_id"), nullable=False)
-    user_name = Column(String, "user_name", nullable=False, index=True)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    user_name = Column(String, name="user_name", nullable=False, index=True)
+    timestamp = Column(DateTime, name="timestamp", default=datetime.utcnow)
 
     event = relationship("Event", back_populates="registrations")
 

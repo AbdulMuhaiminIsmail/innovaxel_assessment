@@ -7,7 +7,7 @@ from database import engine, get_db
 
 
 models.Base.metadata.create_all(bind=engine)
-app = FastAPI("Event Registration API")
+app = FastAPI(title="Event Registration API")
 
 
 @app.post("/create_event")
@@ -100,8 +100,8 @@ async def reg_event(
 
 @app.get("/view_events")
 async def view_events(
-    sort_by_date: bool, 
-    filter_upcoming: bool,
+    sort_by_date: bool = False, 
+    filter_upcoming: bool = False,
     db: Session = Depends(get_db)
 ):
     try:
