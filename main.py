@@ -140,7 +140,7 @@ async def cancel_registration(
         ).first()
 
         if not reg_record:
-            raise HTTPException(status_code=400, detail="The user is not registered for the event.")
+            raise HTTPException(status_code=400, detail="The event does not exist or the user is not registered for the event.")
         
         event_record = db.query(models.Event).filter(
             models.Event.event_id == event_id
